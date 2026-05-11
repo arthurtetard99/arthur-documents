@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mindeon.ai — Présentation Commerciale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/black.min.css">
+<style>
+  /* ── Mindeon Brand System ───────────────────────────────── */
+  :root {
+    --primary:       #2563EB;
+    --primary-dark:  #1D4ED8;
+    --primary-light: #EFF6FF;
+    --secondary:     #7C3AED;
+    --slate-900:     #0f172a;
+    --slate-800:     #1e293b;
+    --slate-700:     #334155;
+    --slate-600:     #475569;
+    --slate-500:     #64748b;
+    --slate-400:     #94a3b8;
+    --slate-300:     #cbd5e1;
+    --slate-200:     #e2e8f0;
+    --slate-100:     #f1f5f9;
+    --slate-50:      #f8fafc;
+    --green:         #16a34a;
+    --green-light:   #4ade80;
+    --bg-blue:       #f0f4ff;
+    --white:         #ffffff;
+  }
+
+  .reveal-viewport { background: var(--slate-900); }
+
+  .reveal {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 18px;
+    color: var(--slate-900);
+  }
+
+  .reveal .slides { text-align: left; }
+  .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 800;
+    text-transform: none;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0 0 0.5em 0;
+    color: inherit;
+  }
+
+  .reveal p, .reveal li { line-height: 1.6; margin: 0; }
+  .reveal section { padding: 0; }
+
+  /* ── Slide layouts ──────────────────────────────────────── */
+  .slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 52px 64px 44px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-light { background: var(--white); }
+  .slide-dark  { background: var(--slate-900); color: var(--white); }
+  .slide-blue  { background: var(--primary); color: var(--white); }
+
+  /* ── Components ─────────────────────────────────────────── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 14px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .badge-blue  { background: var(--primary-light); color: var(--primary); }
+  .badge-dark  { background: var(--slate-800);     color: var(--primary); }
+  .badge-white { background: rgba(255,255,255,0.15); color: var(--white); }
+
+  .slide-title {
+    font-size: 2.4em;
+    font-weight: 800;
+    line-height: 1.08;
+    margin-bottom: 10px;
+  }
+
+  .slide-subtitle {
+    font-size: 0.85em;
+    color: var(--slate-500);
+    margin-bottom: 32px;
+    line-height: 1.55;
+  }
+  .dark .slide-subtitle { color: var(--slate-400); }
+
+  .divider {
+    width: 48px; height: 3px;
+    background: var(--primary);
+    border-radius: 2px;
+    margin-bottom: 32px;
+  }
+
+  /* ── Cards ──────────────────────────────────────────────── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--slate-200);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-dark {
+    background: var(--slate-800);
+    border: 1px solid var(--slate-700);
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .card-blue-light {
+    background: var(--bg-blue);
+    border: 1px solid rgba(37,99,235,.12);
+    border-radius: 16px;
+    padding: 24px;
+  }
+
+  .card-accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--primary); border-radius: 16px 16px 0 0; }
+  .card-accent-purple { background: var(--secondary); }
+  .card-accent-green  { background: var(--green); }
+
+  .card-icon { font-size: 1.6em; margin-bottom: 10px; display: block; }
+  .card-title { font-size: 0.85em; font-weight: 700; color: var(--slate-900); margin-bottom: 6px; }
+  .card-dark .card-title { color: var(--white); }
+  .card-desc  { font-size: 0.72em; color: var(--slate-600); line-height: 1.6; }
+  .card-dark .card-desc  { color: var(--slate-400); }
+
+  /* ── Grids ──────────────────────────────────────────────── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 14px; }
+
+  /* ── Metric cards ───────────────────────────────────────── */
+  .metric {
+    background: var(--white);
+    border: 1px solid var(--slate-200);
+    border-radius: 16px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .metric-dark {
+    background: var(--slate-800);
+    border: 1px solid var(--slate-700);
+    border-radius: 16px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .metric-val { font-size: 1.8em; font-weight: 800; line-height: 1; margin-bottom: 6px; }
+  .metric-lbl { font-size: 0.65em; color: var(--slate-500); line-height: 1.4; }
+  .metric-dark .metric-lbl { color: var(--slate-400); }
+  .blue { color: var(--primary); }
+  .green { color: var(--green); }
+  .purple { color: var(--secondary); }
+  .white { color: var(--white); }
+
+  /* ── Check list ─────────────────────────────────────────── */
+  .check-list { list-style: none; margin: 0; padding: 0; }
+  .check-list li {
+    display: flex; align-items: flex-start;
+    gap: 10px; font-size: 0.78em;
+    color: var(--slate-700); margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .check-list li::before {
+    content: "✓";
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 18px; height: 18px; min-width: 18px;
+    background: var(--primary); color: white;
+    border-radius: 4px; font-size: 10px; font-weight: 700;
+    margin-top: 1px;
+  }
+  .check-list.dark li { color: var(--slate-300); }
+
+  /* ── Tags ───────────────────────────────────────────────── */
+  .tag {
+    display: inline-block;
+    padding: 3px 10px; border-radius: 99px;
+    font-size: 0.6em; font-weight: 600;
+    background: var(--primary-light); color: var(--primary);
+    margin: 2px;
+  }
+  .tag-purple { background: #f5f3ff; color: var(--secondary); }
+  .tag-green  { background: #f0fdf4; color: var(--green); }
+  .tag-dark   { background: var(--slate-700); color: var(--slate-300); }
+
+  /* ── Table ──────────────────────────────────────────────── */
+  table.compare {
+    width: 100%; border-collapse: collapse;
+    font-size: 0.72em;
+  }
+  table.compare th {
+    background: var(--slate-800); color: var(--white);
+    padding: 10px 14px; text-align: left; font-weight: 700;
+  }
+  table.compare th:last-child { background: var(--primary); }
+  table.compare td {
+    padding: 9px 14px; border-bottom: 1px solid var(--slate-200);
+    color: var(--slate-700);
+  }
+  table.compare tr:nth-child(even) td { background: var(--slate-50); }
+  table.compare td:last-child { font-weight: 700; color: var(--primary); }
+  .cross { color: #f87171; }
+  .check { color: var(--green); }
+
+  /* ── Pricing ────────────────────────────────────────────── */
+  .price-card {
+    border-radius: 16px; padding: 28px 22px;
+    position: relative; overflow: hidden;
+  }
+  .price-card.featured {
+    background: var(--primary); color: var(--white);
+    transform: scale(1.04);
+    box-shadow: 0 20px 48px rgba(37,99,235,.35);
+  }
+  .price-card.standard {
+    background: var(--slate-800);
+    border: 1px solid var(--slate-700);
+    color: var(--white);
+  }
+  .price-name { font-size: 0.72em; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; opacity:.7; margin-bottom: 8px; }
+  .price-val  { font-size: 1.9em; font-weight: 800; line-height: 1; margin-bottom: 4px; }
+  .price-per  { font-size: 0.65em; opacity: .6; margin-bottom: 18px; }
+  .price-feat { font-size: 0.68em; opacity: .8; margin-bottom: 6px; line-height: 1.5; }
+  .price-feat::before { content: "→ "; opacity: .5; }
+
+  /* ── Step boxes ─────────────────────────────────────────── */
+  .step {
+    background: var(--slate-800); border: 1px solid var(--slate-700);
+    border-radius: 16px; padding: 22px;
+    position: relative;
+  }
+  .step-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 8px;
+    background: var(--primary); color: white;
+    font-size: 0.8em; font-weight: 800;
+    margin-bottom: 12px;
+  }
+  .step-title { font-size: 0.82em; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .step-desc  { font-size: 0.68em; color: var(--slate-400); line-height: 1.6; }
+
+  /* ── Quote / highlight ──────────────────────────────────── */
+  .quote-block {
+    border-left: 3px solid var(--primary);
+    padding: 14px 18px;
+    background: var(--bg-blue);
+    border-radius: 0 12px 12px 0;
+    font-size: 0.8em;
+    font-style: italic;
+    color: var(--slate-700);
+    line-height: 1.6;
+  }
+
+  .highlight-box {
+    background: var(--primary);
+    border-radius: 12px;
+    padding: 18px 22px;
+    color: var(--white);
+    font-size: 0.8em;
+    line-height: 1.6;
+  }
+
+  /* ── Decorative blobs ───────────────────────────────────── */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .content-wrap { position: relative; z-index: 1; width: 100%; height: 100%; }
+
+  /* ── Footer ─────────────────────────────────────────────── */
+  .slide-footer {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 10px 64px;
+    font-size: 0.58em;
+    color: var(--slate-500);
+    border-top: 1px solid var(--slate-200);
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--white);
+  }
+  .slide-footer-dark {
+    background: var(--slate-900); color: var(--slate-600);
+    border-top-color: var(--slate-800);
+  }
+
+  /* ── Two col layout ─────────────────────────────────────── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  .two-col-3-2 { display: grid; grid-template-columns: 3fr 2fr; gap: 32px; align-items: start; }
+
+  /* ── Use case row ───────────────────────────────────────── */
+  .uc-row {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 16px; border-radius: 10px;
+    background: var(--slate-50); margin-bottom: 8px;
+  }
+  .uc-icon { font-size: 1.1em; min-width: 24px; }
+  .uc-title { font-size: 0.75em; font-weight: 700; color: var(--slate-900); }
+  .uc-desc  { font-size: 0.68em; color: var(--slate-600); line-height: 1.5; }
+
+  /* ── Arrows ─────────────────────────────────────────────── */
+  .arrow-flow {
+    display: flex; align-items: center; gap: 8px;
+    justify-content: center; margin: 16px 0;
+  }
+  .arrow-item {
+    background: var(--slate-800); border-radius: 8px;
+    padding: 8px 14px; font-size: 0.65em;
+    color: var(--slate-300); font-weight: 600;
+  }
+  .arrow-sep { color: var(--primary); font-size: 1em; font-weight: 800; }
+
+  /* ── Animations ─────────────────────────────────────────── */
+  .reveal .slides section { transition: none; }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SLIDE 1 — COVER -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section>
+<div class="slide slide-dark" style="justify-content: center;">
+  <div class="blob" style="width:500px;height:500px;background:rgba(37,99,235,.18);top:-120px;right:-100px;"></div>
+  <div class="blob" style="width:300px;height:300px;background:rgba(124,58,237,.12);bottom:-80px;left:-60px;"></div>
+  <div class="content-wrap" style="display:flex;flex-direction:column;justify-content:center;height:100%;">
+    <div class="badge badge-dark">Présentation Commerciale · Confidentiel · Mai 2026</div>
+    <h1 class="slide-title" style="font-size:3.2em;color:white;max-width:700px;line-height:1.05;">
+      Vos processus manuels,<br>
+      <span style="color:var(--primary);">automatisés par l'IA.</span>
+    </h1>
+    <p style="font-size:0.9em;color:var(--slate-400);max-width:580px;line-height:1.65;margin-top:16px;margin-bottom:40px;">
+      Mindeon.ai conçoit et déploie des agents IA sur-mesure qui remplacent les tâches répétitives,
+      qualifient vos leads et réduisent vos coûts — sans lock-in, code à vous.
+    </p>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:48px;">
+      <div style="background:var(--slate-800);border-radius:10px;padding:10px 20px;font-size:0.75em;color:var(--slate-300);">
+        ⭐ <strong style="color:white;">5/5</strong> sur Malt
+      </div>
+      <div style="background:var(--slate-800);border-radius:10px;padding:10px 20px;font-size:0.75em;color:var(--slate-300);">
+        🚀 <strong style="color:white;">15+</strong> projets livrés
+      </div>
+      <div style="background:var(--slate-800);border-radius:10px;padding:10px 20px;font-size:0.75em;color:var(--slate-300);">
+        👷 <strong style="color:white;">3</strong> ingénieurs spécialisés IA
+      </div>
+      <div style="background:var(--slate-800);border-radius:10px;padding:10px 20px;font-size:0.75em;color:var(--slate-300);">
+        ⚡ <strong style="color:white;">3 semaines</strong> pour un premier livrable
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <div style="background:var(--primary);border-radius:10px;padding:12px 24px;font-size:0.8em;font-weight:700;color:white;">
+        Réserver une consultation gratuite →
+      </div>
+      <span style="font-size:0.72em;color:var(--slate-500);">calendly.com/mindeon/30min</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SLIDE 2 — LE CONSTAT (chiffres durs) -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section>
+<div class="slide slide-light">
+  <div class="badge badge-blue">Le Constat</div>
+  <h2 class="slide-title">Combien vous coûtent vraiment<br>vos processus manuels ?</h2>
+  <div class="divider"></div>
+  <div class="grid-3" style="margin-bottom:20px;">
+    <div class="card" style="border-top:3px solid var(--primary);">
+      <div style="font-size:2.2em;font-weight:800;color:var(--primary);line-height:1;">30 %</div>
+      <div style="font-size:0.75em;font-weight:700;color:var(--slate-900);margin:6px 0 4px;">du temps commercial perdu</div>
+      <div style="font-size:0.68em;color:var(--slate-600);line-height:1.5;">sur des tâches répétitives : saisie CRM, relances, qualification manuelle, reporting.</div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--secondary);">
+      <div style="font-size:2.2em;font-weight:800;color:var(--secondary);line-height:1;">× 3</div>
+      <div style="font-size:0.75em;font-weight:700;color:var(--slate-900);margin:6px 0 4px;">le coût d'un recrutement vs. un agent IA</div>
+      <div style="font-size:0.68em;color:var(--slate-600);line-height:1.5;">Un SDR junior coûte 35–50k€/an. Un agent IA de qualification : 2 500€ une fois.</div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--green);">
+      <div style="font-size:2.2em;font-weight:800;color:var(--green);line-height:1;">&lt; 3 sem.</div>
+      <div style="font-size:0.75em;font-weight:700;color:var(--slate-900);margin:6px 0 4px;">pour un ROI positif</div>
+      <div style="font-size:0.68em;color:var(--slate-600);line-height:1.5;">Nos clients atteignent le break-even avant la fin du premier mois.</div>
+    </div>
+  </div>
+  <div class="two-col" style="gap:16px;">
+    <div class="quote-block">
+      « Nous avions 2 personnes dédiées à la qualification de leads entrants.
+      Après le voice bot Mindeon, 1 personne gère 3× plus de volume — et se concentre sur la vente. »
+      <div style="margin-top:8px;font-size:0.85em;font-style:normal;font-weight:700;color:var(--primary);">— Client SaaS RH, 2024</div>
+    </div>
+    <div style="background:var(--slate-900);border-radius:16px;padding:22px;">
+      <div style="font-size:0.72em;font-weight:700;color:var(--slate-400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px;">Ce que l'IA remplace immédiatement</div>
+      <ul class="check-list dark" style="margin:0;">
+        <li>Qualification des leads entrants</li>
+        <li>Réponses aux FAQs support</li>
+        <li>Relances email / LinkedIn automatiques</li>
+        <li>Enrichissement et saisie CRM</li>
+        <li>Rapports et synthèses hebdomadaires</li>
+      </ul>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>mindeon.ai</span><span>Confidentiel</span>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SLIDE 3 — CE QU'ON AUTOMATISE CONCRÈTEMENT -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section>
+<div class="slide slide-light">
+  <div class="badge badge-blue">Nos Solutions</div>
+  <h2 class="slide-title">Ce qu'on automatise — concrètement.</h2>
+  <div class="divider"></div>
+  <div class="grid-3" style="gap:14px;">
+
+    <div>
+      <div style="font-size:0.7em;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--primary);margin-bottom:10px;">📞 Sales & Prospection</div>
+      <div class="uc-row"><span class="uc-icon">🎙️</span><div><div class="uc-title">Voice bot de qualification</div><div class="uc-desc">Appels entrants traités 24/7, qualification ICP, prise de RDV automatique dans le calendrier du commercial.</div></div></div>
+      <div class="uc-row"><span class="uc-icon">📧</span><div><div class="uc-title">Séquences outreach IA</div><div class="uc-desc">Emails et messages LinkedIn ultra-personnalisés générés par IA, A/B testés et envoyés automatiquement.</div></div></div>
+      <div class="uc-row"><span class="uc-icon">🔎</span><div><div class="uc-title">Enrichissement CRM</div><div class="uc-desc">Contact entrant → fiche CRM complète (taille ent., secteur, LinkedIn, email vérifié) en 30 secondes.</div></div></div>
+    </div>
+
+    <div>
+      <div style="font-size:0.7em;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--secondary);margin-bottom:10px;">💬 Support & Service Client</div>
+      <div class="uc-row"><span class="uc-icon">🤖</span><div><div class="uc-title">Chatbot RAG support</div><div class="uc-desc">Résout 60–80 % des tickets sans intervention humaine, entraîné sur votre base de connaissance.</div></div></div>
+      <div class="uc-row"><span class="uc-icon">🔔</span><div><div class="uc-title">Escalade intelligente</div><div class="uc-desc">Détection des tickets complexes ou urgents, routage vers le bon agent avec contexte complet.</div></div></div>
+      <div class="uc-row"><span class="uc-icon">📊</span><div><div class="uc-title">Reporting automatique</div><div class="uc-desc">Résumés quotidiens des tickets, CSAT, thèmes récurrents — sans extraction manuelle.</div></div></div>
+    </div>
+
+    <div>
+      <div style="font-size:0.7em;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--green);margin-bottom:10px;">⚙️ Ops & Back-office</div>
+      <div class="uc-row"><span class="uc-icon">🔄</span><div><div class="uc-title">Synchronisation outils</div><div class="uc-desc">Zéro saisie double entre CRM, ERP, facturation, Slack. Tout se met à jour en temps réel via n8n.</div></div></div>
+      <div class="uc-row"><span class="uc-icon">📑</span><div><div class="uc-title">Traitement de documents</div><div class="uc-desc">Extraction de données depuis devis, contrats, factures. Alimenter automatiquement vos bases.</div></div></div>
+      <div class="uc-row"><span class="uc-icon">🔔</span><div><div class="uc-title">Alertes & monitoring</div><div class="uc-desc">Notifications Slack/email sur KPIs clés, anomalies détectées, seuils dépassés.</div></div></div>
+    </div>
+
+  </div>
+  <div class="slide-footer"><span>mindeon.ai</span><span>Confidentiel</span></div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SLIDE 4 — FOCUS SaaS -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section>
+<div class="slide slide-dark">
+  <div class="blob" style="width:400px;height:400px;background:rgba(37,99,235,.15);top:-80px;right:-80px;"></div>
+  <div class="content-wrap">
+    <div class="badge badge-dark">Focus SaaS & Tech</div>
+    <h2 class="slide-title" style="color:white;max-width:700px;">Pour les SaaS : automatisez du funnel<br>à la rétention.</h2>
+    <div class="divider"></div>
+    <div class="grid-2" style="gap:14px;margin-bottom:14px;">
+      <div class="card-dark">
+        <div class="card-accent"></div>
+        <div style="font-size:0.7em;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px;margin-top:4px;">🚀 Acquisition & Onboarding</div>
+        <ul class="check-list dark">
+          <li>Lead scoring IA sur comportement produit (pages visitées, features utilisées)</li>
+          <li>Onboarding guidé par chatbot — réduit le time-to-value de 40 %</li>
+          <li>Relance automatique des trials inactifs avec message personnalisé</li>
+          <li>Qualification inbound : taille entreprise, budget, intent détectés</li>
+        </ul>
+      </div>
+      <div class="card-dark">
+        <div class="card-accent card-accent-purple"></div>
+        <div style="font-size:0.7em;font-weight:700;color:var(--secondary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px;margin-top:4px;">🔄 Rétention & Expansion</div>
+        <ul class="check-list dark">
+          <li>Détection churn prédictif : alerte CSM avant que le client ne parte</li>
+          <li>NPS automatisé + synthèse IA des verbatims pour l'équipe produit</li>
+          <li>Upsell automatique déclenché sur signaux d'usage (feature limit atteint)</li>
+          <li>Support RAG : documentation produit → chatbot 24/7 qui répond à votre place</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid-3" style="gap:14px;">
+      <div class="metric-dark"><div class="metric-val blue">70 %</div><div class="metric-lbl">tickets résolus sans<br>intervention humaine</div></div>
+      <div class="metric-dark"><div class="metric-val" style="color:var(--green-light);">−40 %</div><div class="metric-lbl">time-to-value<br>onboarding</div></div>
+      <div class="metric-dark"><div class="metric-val" style="color:var(--secondary);">× 2.5</div><div class="metric-lbl">leads qualifiés<br>sans recruter</div></div>
+    </div>
+  </div>
+  <div class="slide-footer slide-footer-dark"><span>mindeon.ai</span><span>Confidentiel</span></div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SLIDE 5 — CAS CLIENT -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section>
+<div class="slide slide-light">
+  <div class="badge badge-blue">Résultats Clients</div>
+  <h2 class="slide-title">Ce que ça donne en conditions réelles.</h2>
+  <div class="divider"></div>
+  <div class="two-col-3-2" style="align-items:stretch;">
+    <div>
+      <div style="background:var(--slate-900);border-radius:16px;padding:28px;margin-bottom:14px;">
+        <div style="font-size:0.68em;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">📌 Cas Client #1 — Fintech SaaS B2B</div>
+        <div style="font-size:0.8em;font-weight:700;color:white;margin-bottom:12px;">Chatbot RAG support client</div>
+        <div style="font-size:0.72em;color:var(--slate-400);margin-bottom:18px;line-height:1.6;">
+          <strong style="color:var(--slate-300);">Avant :</strong> 800+ tickets/mois, 2 agents full-time, CSAT à 3.2/5, délai de réponse moyen 4h.<br>
+          <strong style="color:var(--slate-300);">Après :</strong> déployé en 18 jours.
+        </div>
+        <div class="grid-3" style="gap:10px;">
+          <div style="background:var(--slate-800);border-radius:10px;padding:12px;text-align:center;">
+            <div style="font-size:1.4em;font-weight:800;color:var(--primary);">70 %</div>
+            <div style="font-size:0.6em;color:var(--slate-400);">tickets auto-résolus</div>
+          </div>
+          <div style="background:var(--slate-800);border-radius:10px;padding:12px;text-align:center;">
+            <div style="font-size:1.4em;font-weight:800;color:var(--green-light);">+25 pts</div>
+            <div style="font-size:0.6em;color:var(--slate-400);">CSAT en 60 jours</div>
+          </div>
+          <div style="background:var(--slate-800);border-radius:10px;padding:12px;text-align:center;">
+            <div style="font-size:1.4em;font-weight:800;color:var(--secondary);">12k€</div>
+            <div style="font-size:0.6em;color:var(--slate-400);">économisés/mois</div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--bg-blue);border-radius:16px;padding:22px;">
+        <div style="font-size:0.68em;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">📌 Cas Client #2 — PME E-commerce</div>
+        <div style="font-size:0.8em;font-weight:700;color:var(--slate-900);margin-bottom:10px;">Automatisation CRM + relances</div>
+        <div style="font-size:0.72em;color:var(--slate-600);line-height:1.6;">
+          Synchronisation Shopify → HubSpot en temps réel, séquences post-achat
+          automatiques, détection clients inactifs et relance personnalisée.
+          <strong>Résultat : +22 % de réachats en 45 jours.</strong>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:0.72em;font-weight:700;color:var(--slate-700);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px;">⭐ Témoignages Malt — 5/5</div>
+      <div class="card" style="margin-bottom:12px;">
+        <div style="font-size:0.62em;margin-bottom:6px;">⭐⭐⭐⭐⭐ &nbsp;<strong>Jean-Luc B.</strong> · JLB EVENT</div>
+        <div style="font-size:0.72em;color:var(--slate-600);font-style:italic;line-height:1.5;">« Mindeon a automatisé notre gestion des inscriptions événementielles. ROI atteint en 3 semaines. Équipe très pro. »</div>
+      </div>
+      <div class="card" style="margin-bottom:12px;">
+        <div style="font-size:0.62em;margin-bottom:6px;">⭐⭐⭐⭐⭐ &nbsp;<strong>Massimo F.</strong> · JoRecord.io</div>
+        <div style="font-size:0.72em;color:var(--slate-600);font-style:italic;line-height:1.5;">« L'agent vocal a changé notre qualification de leads. On a divisé par 3 le temps que nos sales passaient en prospection froide. »</div>
+      </div>
+      <div class="card">
+        <div style="font-size:0.62em;margin-bottom:6px;">⭐⭐⭐⭐⭐ &nbsp;<strong>Enzo G.</strong> · Wheeled</div>
+        <div style="font-size:0.72em;color:var(--slate-600);font-style:italic;line-height:1.5;">« Livraison rapide, code propre, documentation complète. Ce sont les seuls à avoir tenu leurs délais. »</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>mindeon.ai</span><span>Confidentiel</span></div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SLIDE 6 — COMMENT ON TRAVAILLE -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section>
+<div class="slide slide-dark">
+  <div class="blob" style="width:350px;height:350px;background:rgba(124,58,237,.12);bottom:-60px;right:-60px;"></div>
+  <div class="content-wrap">
+    <div class="badge badge-dark">Méthodologie</div>
+    <h2 class="slide-title" style="color:white;">Du brief au déploiement<br>en 3 semaines.</h2>
+    <div class="divider"></div>
+    <div class="grid-4" style="gap:14px;margin-bottom:24px;">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Audit & Diagnostic</div>
+        <div class="step-desc">Atelier 2h pour cartographier vos processus, identifier les quick wins IA et estimer le ROI précis.</div>
+        <div style="margin-top:12px;">
+          <span class="tag tag-dark">Gratuit</span>
+          <span class="tag tag-dark">2h</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Architecture</div>
+        <div class="step-desc">Conception de l'agent IA, choix du stack technique adapté, validation avec vous avant de coder.</div>
+        <div style="margin-top:12px;">
+          <span class="tag tag-dark">Sem. 1</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Développement</div>
+        <div class="step-desc">Sprints de 1 semaine. Démo à chaque sprint. Vous voyez le produit avancer en temps réel.</div>
+        <div style="margin-top:12px;">
+          <span class="tag tag-dark">Sem. 1–3</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Déploiement</div>
+        <div class="step-desc">Mise en prod, monitoring, documentation complète, formation équipe. Code remis en propriété.</div>
+        <div style="margin-top:12px;">
+          <span class="tag tag-dark">Sem. 3</span>
+          <span class="tag" style="background:rgba(37,99,235,.2);color:var(--primary);">Code à vous</span>
+        </div>
+      </div>
+    </div>
+    <div class="highlight-box" style="background:var(--slate-800);border:1px solid var(--slate-700);">
+      <div style="display:flex;gap:24px;align-items:center;justify-content:center;flex-wrap:wrap;">
+        <div style="text-align:center;"><div style="font-size:1.4em;font-weight:800;color:var(--primary);">Sem. 1</div><div style="font-size:0.65em;color:var(--slate-400);">Premier livrable fonctionnel</div></div>
+        <div style="color:var(--slate-600);font-size:1.2em;">→</div>
+        <div style="text-align:center;"><div style="font-size:1.4em;font-weight:800;color:var(--primary);">Sem. 3</div><div style="font-size:0.65em;color:var(--slate-400);">Déploiement en production</div></div>
+        <div style="color:var(--slate-600);font-size:1.2em;">→</div>
+        <div style="text-align:center;"><div style="font-size:1.4em;font-weight:800;color:var(--green-light);">Mois 1</div><div style="font-size:0.65em;color:var(--slate-400);">ROI positif constaté</div></div>
+        <div style="color:var(--slate-600);font-size:1.2em;">→</div>
+        <div style="text-align:center;"><div style="font-size:1.4em;font-weight:800;color:white;">100 %</div><div style="font-size:0.65em;color:var(--slate-400);">Propriété du code</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer slide-footer-dark"><span>mindeon.ai</span><span>Confidentiel</span></div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SLIDE 7 — PRICING -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section>
+<div class="slide slide-dark">
+  <div class="badge badge-dark">Tarifs</div>
+  <h2 class="slide-title" style="color:white;">Des forfaits clairs, sans surprise.</h2>
+  <div class="divider"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;align-items:center;">
+    <div class="price-card standard">
+      <div class="price-name">Starter</div>
+      <div class="price-val">1 500 €</div>
+      <div class="price-per">HT · projet unique</div>
+      <div style="border-top:1px solid var(--slate-700);margin:14px 0;"></div>
+      <div class="price-feat">Automatisation n8n (3–5 workflows)</div>
+      <div class="price-feat">Connexion outils existants</div>
+      <div class="price-feat">Documentation complète</div>
+      <div class="price-feat">1 mois de support</div>
+      <div style="margin-top:14px;"><span class="tag tag-dark">Idéal : PME · premiers pas IA</span></div>
+    </div>
+    <div class="price-card featured">
+      <div style="position:absolute;top:0;left:0;right:0;background:rgba(255,255,255,.15);padding:5px;text-align:center;font-size:0.6em;font-weight:700;border-radius:16px 16px 0 0;">⭐ LE PLUS POPULAIRE</div>
+      <div style="margin-top:20px;"></div>
+      <div class="price-name">Agent IA</div>
+      <div class="price-val">2 500 €</div>
+      <div class="price-per">HT · projet unique</div>
+      <div style="border-top:1px solid rgba(255,255,255,.2);margin:14px 0;"></div>
+      <div class="price-feat">Voice bot ou chatbot IA</div>
+      <div class="price-feat">Entraînement sur vos données</div>
+      <div class="price-feat">Intégration web / CRM / WhatsApp</div>
+      <div class="price-feat">Tests & recette inclus</div>
+      <div class="price-feat">3 mois de support</div>
+      <div style="margin-top:14px;"><span style="background:rgba(255,255,255,.2);color:white;padding:3px 10px;border-radius:99px;font-size:0.6em;font-weight:600;">SaaS · E-commerce · Services</span></div>
+    </div>
+    <div class="price-card standard">
+      <div class="price-name">Sur-Mesure</div>
+      <div class="price-val">5 000 €</div>
+      <div class="price-per">HT · projet unique</div>
+      <div style="border-top:1px solid var(--slate-700);margin:14px 0;"></div>
+      <div class="price-feat">Architecture IA multi-canaux</div>
+      <div class="price-feat">Intégrations API complexes</div>
+      <div class="price-feat">Déploiement & monitoring</div>
+      <div class="price-feat">6 mois de support inclus</div>
+      <div style="margin-top:14px;"><span class="tag tag-dark">Scale-ups · Projets complexes</span></div>
+    </div>
+    <div class="price-card standard">
+      <div class="price-name">App Web IA</div>
+      <div class="price-val">8 000 €</div>
+      <div class="price-per">HT · projet unique</div>
+      <div style="border-top:1px solid var(--slate-700);margin:14px 0;"></div>
+      <div class="price-feat">Conception UX/UI complète</div>
+      <div class="price-feat">Développement full-stack</div>
+      <div class="price-feat">Back-office & API dédiée</div>
+      <div class="price-feat">Hébergement & DevOps</div>
+      <div style="margin-top:14px;"><span class="tag tag-dark">Produit SaaS · MVP IA</span></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:16px;font-size:0.65em;color:var(--slate-500);">
+    ✓ Code source livré en propriété &nbsp;·&nbsp; ✓ Sans engagement après livraison &nbsp;·&nbsp; ✓ Devis sous 48h &nbsp;·&nbsp; ✓ Audit initial gratuit
+  </div>
+  <div class="slide-footer slide-footer-dark"><span>mindeon.ai</span><span>Confidentiel</span></div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SLIDE 8 — POURQUOI MINDEON -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section>
+<div class="slide slide-light">
+  <div class="badge badge-blue">Pourquoi nous</div>
+  <h2 class="slide-title">Ce qui nous différencie<br>concrètement.</h2>
+  <div class="divider"></div>
+  <div class="two-col-3-2">
+    <div>
+      <table class="compare">
+        <tr>
+          <th>Critère</th>
+          <th>Agences web</th>
+          <th>Freelances</th>
+          <th>SaaS IA</th>
+          <th>Mindeon.ai ✓</th>
+        </tr>
+        <tr>
+          <td>Spécialisation IA</td>
+          <td class="cross">✗</td>
+          <td>Variable</td>
+          <td>Partielle</td>
+          <td>✓ 100 %</td>
+        </tr>
+        <tr>
+          <td>Code ownership</td>
+          <td>Variable</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td>✓ Toujours</td>
+        </tr>
+        <tr>
+          <td>Délai de livraison</td>
+          <td>2–6 mois</td>
+          <td>1–3 mois</td>
+          <td>Immédiat</td>
+          <td>2–4 semaines</td>
+        </tr>
+        <tr>
+          <td>ROI garanti avant démarrage</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td>✓ Ou on dit non</td>
+        </tr>
+        <tr>
+          <td>Intégration stack existante</td>
+          <td>Partielle</td>
+          <td>Variable</td>
+          <td>Limitée</td>
+          <td>✓ Totale</td>
+        </tr>
+        <tr>
+          <td>Support post-livraison</td>
+          <td>Contrat supp.</td>
+          <td>Rare</td>
+          <td>Standard</td>
+          <td>✓ Inclus</td>
+        </tr>
+      </table>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="card" style="border-top:3px solid var(--primary);">
+        <div style="font-size:0.75em;font-weight:700;color:var(--slate-900);margin-bottom:4px;">🔐 Code ownership 100 %</div>
+        <div style="font-size:0.68em;color:var(--slate-600);line-height:1.5;">Le code vous appartient dès la livraison. Aucun lock-in, aucune dépendance à Mindeon.</div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--green);">
+        <div style="font-size:0.75em;font-weight:700;color:var(--slate-900);margin-bottom:4px;">📊 ROI avant tout</div>
+        <div style="font-size:0.68em;color:var(--slate-600);line-height:1.5;">On vous dit si ça vaut le coup avant de démarrer. Si le ROI n'est pas évident, on vous le dit.</div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--secondary);">
+        <div style="font-size:0.75em;font-weight:700;color:var(--slate-900);margin-bottom:4px;">⚡ Ingénieurs, pas commerciaux</div>
+        <div style="font-size:0.68em;color:var(--slate-600);line-height:1.5;">3 ingénieurs spécialisés IA. Pas d'intermédiaire, pas de PowerPoint creux — que du code qui marche.</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>mindeon.ai</span><span>Confidentiel</span></div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SLIDE 9 — CTA FINAL -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section>
+<div class="slide slide-dark" style="justify-content:center;align-items:center;text-align:center;">
+  <div class="blob" style="width:600px;height:600px;background:rgba(37,99,235,.2);top:-150px;left:50%;transform:translateX(-50%);"></div>
+  <div class="content-wrap" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;">
+    <div class="badge badge-dark" style="margin-bottom:24px;">Prochaine Étape</div>
+    <h1 style="font-size:3em;font-weight:800;color:white;line-height:1.05;margin-bottom:16px;max-width:700px;">
+      Prêt à automatiser ?<br>
+      <span style="color:var(--primary);">On vous le dit en 30 min.</span>
+    </h1>
+    <p style="color:var(--slate-400);font-size:0.9em;max-width:540px;line-height:1.65;margin-bottom:40px;">
+      Consultation gratuite : on analyse vos processus,
+      on identifie ce que l'IA peut automatiser, et on vous dit
+      honnêtement si ça vaut le coup — et combien ça rapporte.
+    </p>
+    <div style="display:flex;gap:14px;align-items:center;margin-bottom:48px;flex-wrap:wrap;justify-content:center;">
+      <div style="background:var(--primary);border-radius:12px;padding:16px 32px;font-size:0.88em;font-weight:700;color:white;">
+        📅 Réserver sur Calendly →
+      </div>
+      <div style="background:var(--slate-800);border-radius:12px;padding:16px 32px;font-size:0.88em;font-weight:700;color:var(--slate-300);">
+        📧 contact@mindeon.ai
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;max-width:700px;width:100%;">
+      <div style="background:var(--slate-800);border-radius:12px;padding:18px;text-align:center;">
+        <div style="font-size:1.3em;font-weight:800;color:var(--primary);margin-bottom:4px;">Étape 1</div>
+        <div style="font-size:0.68em;color:var(--slate-400);line-height:1.5;">Consultation gratuite 30 min — audit de vos processus</div>
+      </div>
+      <div style="background:var(--slate-800);border-radius:12px;padding:18px;text-align:center;">
+        <div style="font-size:1.3em;font-weight:800;color:var(--primary);margin-bottom:4px;">Étape 2</div>
+        <div style="font-size:0.68em;color:var(--slate-400);line-height:1.5;">Proposition + ROI estimé sous 48h</div>
+      </div>
+      <div style="background:var(--slate-800);border-radius:12px;padding:18px;text-align:center;">
+        <div style="font-size:1.3em;font-weight:800;color:var(--primary);margin-bottom:4px;">Étape 3</div>
+        <div style="font-size:0.68em;color:var(--slate-400);line-height:1.5;">Premier agent IA opérationnel en 3 semaines</div>
+      </div>
+    </div>
+    <div style="margin-top:40px;font-size:0.72em;color:var(--slate-600);">
+      mindeon.ai &nbsp;·&nbsp; Paris &nbsp;·&nbsp; +33 6 67 69 94 90 &nbsp;·&nbsp; linkedin.com/company/mindeon
+    </div>
+  </div>
+</div>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  width: 1280,
+  height: 720,
+  margin: 0,
+  minScale: 0.2,
+  maxScale: 2.0,
+  controls: true,
+  progress: true,
+  slideNumber: 'c/t',
+  transition: 'fade',
+  transitionSpeed: 'fast',
+  backgroundTransition: 'fade',
+});
+</script>
+</body>
+</html>
